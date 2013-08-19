@@ -17,6 +17,13 @@ DEFAULT_USER="cchapman"
 ## Aliases ##
 #############
 . ~/.aliases
+alias c='clear'
+alias ls='ls -lG'
+alias homesick="$HOME/.homesick/repos/homeshick/home/.homeshick"
+alias zshconfig="subl ~/.zshrc"
+alias ohmyzsh="subl ~/.oh-my-zsh"
+#alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
+alias nano="subl"
 
 #Incorporates hub into zsh https://github.com/defunkt/hub
 eval "$(hub alias -s)"
