@@ -16,7 +16,6 @@ DEFAULT_USER="cchapman"
 #############
 ## Aliases ##
 #############
-. ~/.aliases
 alias c='clear'
 alias ls='ls -lG'
 alias homesick="$HOME/.homesick/repos/homeshick/home/.homeshick"
@@ -24,6 +23,13 @@ alias zshconfig="subl ~/.zshrc"
 alias ohmyzsh="subl ~/.oh-my-zsh"
 #alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
 alias nano="subl"
+
+#add other aliases:
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi
+
+
 
 #Incorporates hub into zsh https://github.com/defunkt/hub
 eval "$(hub alias -s)"
@@ -79,6 +85,11 @@ zstyle ':completion:*' menu select=2
 
 ### Added by the Heroku Toolbelt
 #export PATH="/usr/local/heroku/bin:$PATH"
+
+### make ctrl-s and ctrl-q send those commands instead of sending "control flow" information
+stty -ixoff
+stty stop undef
+stty start undef
 
 ###############
 ## Functions ##
