@@ -12,6 +12,7 @@ source $ZSH/oh-my-zsh.sh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
 DEFAULT_USER="cchapman"
+WORKON_HOME=~/Envs
 
 #############
 ## Aliases ##
