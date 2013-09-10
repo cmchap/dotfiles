@@ -12,7 +12,6 @@ source $ZSH/oh-my-zsh.sh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
 DEFAULT_USER="cchapman"
-WORKON_HOME=~/Envs
 
 #############
 ## Aliases ##
@@ -30,7 +29,21 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
+# Python
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true
+if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+else
+    echo "WARNING: Can't find virtualenvwrapper.sh"
+fi
 
+if [[ ! -d $WORKON_HOME ]]; then
+    mkdir $WORKON_HOME
+fi
 
 #Incorporates hub into zsh https://github.com/defunkt/hub
 eval "$(hub alias -s)"
@@ -62,9 +75,7 @@ plugins=(vim git hub ssh brew git-extras git-flow github heroku last-working-dir
 
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin
-#/bin/usr/local/share/npm:
-#/bin/usr/local/bin:
-#/usr/local/share/npm/bin
+export PATH=/usr/local/share/python:$PATH
 
 # Path to your editor of choice
 # Sublime Edit
