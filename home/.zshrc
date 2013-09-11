@@ -1,6 +1,12 @@
+
+###############
+## Oh-my-zsh ##
+###############
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+setopt extended_glob
 
 ###########################
 ## Environment Variables ##
@@ -11,7 +17,7 @@ source $ZSH/oh-my-zsh.sh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
-DEFAULT_USER="cchapman"
+DEFAULT_USER=$USER
 
 #############
 ## Aliases ##
@@ -29,7 +35,11 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
-# Python
+############
+## Python ##
+############
+# Sets up virtualenvwrapper and virtualenv.
+# For more info check: http://virtualenvwrapper.readthedocs.org/en/latest/
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
@@ -42,13 +52,27 @@ else
 fi
 
 if [[ ! -d $WORKON_HOME ]]; then
-    mkdir $WORKON_HOME
+    mkdir -p $WORKON_HOME
 fi
 
-#Incorporates hub into zsh https://github.com/defunkt/hub
+
+#########
+## Hub ##
+#########
+#Hub is a github wrapper https://github.com/defunkt/hub
 eval "$(hub alias -s)"
 
+##############
+## Homebrew ##
+##############
 # Homebrew tab-completion
+# https://github.com/mxcl/homebrew/wiki/Tips-N'-Tricks#command-tab-completion
+if [[ ! -d $HOME/.zsh/func ]]; then
+    mkdir -p $HOME/.zsh/func
+fi
+
+if [[ ! ]]
+
 fpath=($HOME/.zsh/func $fpath)
 typeset -U fpath
 
@@ -68,10 +92,16 @@ typeset -U fpath
 # Uncomment following line if you want red dots to be displayed while waiting for completion
  COMPLETION_WAITING_DOTS="true"
 
+ # use extended glob
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vim git hub ssh brew git-extras git-flow github heroku last-working-dir node npm osx pip python screen sublime)
+plugins=(vim git hub ssh brew git-extras git-flow github heroku last-working-dir node npm osx pip python screen sublime zsh-syntax-highlighting)
+
+##########
+## Path ##
+##########
 
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin
