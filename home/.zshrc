@@ -1,7 +1,6 @@
 ###############
 ## Oh-my-zsh ##
 ###############
-
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -11,6 +10,50 @@ source $ZSH/oh-my-zsh.sh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
 DEFAULT_USER=$USER
+
+# oh-my-zsh plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(vim git hub ssh brew git-extras github last-working-dir node npm osx pip python screen sublime zsh-syntax-highlighting)
+
+################
+## Completion ##
+################
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Comment this out to disable weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+ COMPLETION_WAITING_DOTS="true"
+# add custom completion scripts
+fpath=(~/.zsh/completion $fpath)
+
+# Homebrew tab-completion
+# https://github.com/mxcl/homebrew/wiki/Tips-N'-Tricks#command-tab-completion
+if [[ ! -d $HOME/.zsh/func ]]; then
+    mkdir -p $HOME/.zsh/func
+    if [[ ! -f $HOME/.zsh/func/_brew ]]; then
+        ln -s "$(brew --prefix)/Library/Contributions/brew_zsh_completion.zsh" ~/.zsh/func/_brew
+    fi
+fi
+
+fpath=($HOME/.zsh/func $fpath)
+typeset -U fpath
+
+# initialize completions
+autoload -Uz compinit
+compinit
+
+# show completion menu when number of options is at least 2
+zstyle ':completion:*' menu select=2
 
 #############
 ## Aliases ##
@@ -23,9 +66,11 @@ alias ohmyzsh="subl ~/.oh-my-zsh"
 #alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
 alias nano="subl"
 
-#add other aliases:
+# Bring in private aliases
 if [ -f ~/.aliases ]; then
     source ~/.aliases
+else
+  echo "No private aliases found"
 fi
 
 ###########################
@@ -35,6 +80,12 @@ fi
 export EDITOR="subl -w"
 #Add Node path
 export NODE_PATH="/usr/local/lib/node"
+
+##########
+## Path ##
+##########
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin
+export PATH=/usr/local/share/python:$PATH
 
 ############
 ## Python ##
@@ -56,79 +107,16 @@ if [[ ! -d $WORKON_HOME ]]; then
     mkdir -p $WORKON_HOME
 fi
 
-
 #########
 ## Hub ##
 #########
 #Hub is a github wrapper https://github.com/defunkt/hub
 eval "$(hub alias -s)"
 
-##############
-## Homebrew ##
-##############
-# Homebrew tab-completion
-# https://github.com/mxcl/homebrew/wiki/Tips-N'-Tricks#command-tab-completion
-if [[ ! -d $HOME/.zsh/func ]]; then
-    mkdir -p $HOME/.zsh/func
-    if [[ ! -f $HOME/.zsh/func/_brew ]]; then
-        ln -s "$(brew --prefix)/Library/Contributions/brew_zsh_completion.zsh" ~/.zsh/func/_brew
-    fi
-fi
 
-#if [[ ! ]]
-
-fpath=($HOME/.zsh/func $fpath)
-typeset -U fpath
-
-# COMPLETION SETTINGS
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
- COMPLETION_WAITING_DOTS="true"
-
- # use extended glob
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vim git hub ssh brew git-extras github last-working-dir node npm osx pip python screen sublime zsh-syntax-highlighting)
-
-##########
-## Path ##
-##########
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin
-export PATH=/usr/local/share/python:$PATH
-
-# Path to your editor of choice
-# Sublime Text
-export EDITOR="subl -w"
-
-#Add Node path
-export NODE_PATH="/usr/local/lib/node"
-
-################
-## Completion ##
-################
-# add custom completion scripts
-fpath=(~/.zsh/completion $fpath)
-
-# compsys initialization
-autoload -U compinit
-compinit
-
-# show completion menu when number of options is at least 2
-zstyle ':completion:*' menu select=2
-
+##################
+## Control Flow ##
+##################
 # make ctrl-s and ctrl-q send those commands instead of sending "control flow" information
 # this is useful for getting screen and other command line utilities to work properly.
 stty -ixoff
@@ -166,9 +154,6 @@ function _completemarks {
 compctl -K _completemarks jump
 compctl -K _completemarks unmark
 
-
-
-
 ##############
 ## Globbing ##
 ##############
@@ -177,8 +162,6 @@ setopt extended_glob
 ############
 ## Prompt ##
 ############
-
-
 # agnoster's Theme - https://gist.github.com/3712874
 # A Powerline-inspired theme for ZSH
 #
