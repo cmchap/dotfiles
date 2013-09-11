@@ -1,4 +1,3 @@
-
 ###############
 ## Oh-my-zsh ##
 ###############
@@ -6,12 +5,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-setopt extended_glob
-
-###########################
-## Environment Variables ##
-###########################
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -69,9 +62,12 @@ eval "$(hub alias -s)"
 # https://github.com/mxcl/homebrew/wiki/Tips-N'-Tricks#command-tab-completion
 if [[ ! -d $HOME/.zsh/func ]]; then
     mkdir -p $HOME/.zsh/func
+    if [[ ! -f $HOME/.zsh/func/_brew ]]; then
+        ln -s "$(brew --prefix)/Library/Contributions/brew_zsh_completion.zsh" ~/.zsh/func/_brew
+    fi
 fi
 
-if [[ ! ]]
+#if [[ ! ]]
 
 fpath=($HOME/.zsh/func $fpath)
 typeset -U fpath
@@ -102,19 +98,19 @@ plugins=(vim git hub ssh brew git-extras git-flow github heroku last-working-dir
 ##########
 ## Path ##
 ##########
-
-# Customize to your needs...
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin
 export PATH=/usr/local/share/python:$PATH
 
 # Path to your editor of choice
-# Sublime Edit
+# Sublime Text
 export EDITOR="subl -w"
 
 #Add Node path
 export NODE_PATH="/usr/local/lib/node"
 
-# COMPLETION SETTINGS
+################
+## Completion ##
+################
 # add custom completion scripts
 fpath=(~/.zsh/completion $fpath)
 
@@ -125,20 +121,16 @@ compinit
 # show completion menu when number of options is at least 2
 zstyle ':completion:*' menu select=2
 
-### Added by the Heroku Toolbelt
-#export PATH="/usr/local/heroku/bin:$PATH"
-
-### make ctrl-s and ctrl-q send those commands instead of sending "control flow" information
+# make ctrl-s and ctrl-q send those commands instead of sending "control flow" information
+# this is useful for getting screen and other command line utilities to work properly.
 stty -ixoff
 stty stop undef
 stty start undef
 
-###############
-## Functions ##
-###############
-
-### Marks: Easy marking of directories for quick navigation from the command line
-#
+###########
+## Marks ##
+###########
+#Easy marking of directories for quick navigation from the command line
 #from http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 # use "mark foo" to mark and name a directory
 # use "jump foo" to jump to that named directory from anywhere
@@ -167,6 +159,12 @@ compctl -K _completemarks jump
 compctl -K _completemarks unmark
 
 
+
+
+##############
+## Globbing ##
+##############
+setopt extended_glob
 
 ############
 ## Prompt ##
