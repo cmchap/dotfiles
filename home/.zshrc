@@ -28,6 +28,14 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
+###########################
+## Environment Variables ##
+###########################
+# Sublime Text
+export EDITOR="subl -w"
+#Add Node path
+export NODE_PATH="/usr/local/lib/node"
+
 ############
 ## Python ##
 ############
@@ -93,7 +101,7 @@ typeset -U fpath
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vim git hub ssh brew git-extras git-flow github heroku last-working-dir node npm osx pip python screen sublime zsh-syntax-highlighting)
+plugins=(vim git hub ssh brew git-extras github last-working-dir node npm osx pip python screen sublime zsh-syntax-highlighting)
 
 ##########
 ## Path ##
