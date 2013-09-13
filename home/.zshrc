@@ -59,7 +59,7 @@ zstyle ':completion:*' menu select=2
 ## Aliases ##
 #############
 alias c='clear'
-alias ls='ls -alFh'
+alias ls='ls -aFhG'
 alias homesick="$HOME/.homesick/repos/homeshick/home/.homeshick"
 alias zshconfig="subl ~/.zshrc"
 alias ohmyzsh="subl ~/.oh-my-zsh"
