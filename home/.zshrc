@@ -59,7 +59,7 @@ zstyle ':completion:*' menu select=2
 ## Aliases ##
 #############
 alias c='clear'
-alias ls='ls -lG'
+alias ls='ls -alFh'
 alias homesick="$HOME/.homesick/repos/homeshick/home/.homeshick"
 alias zshconfig="subl ~/.zshrc"
 alias ohmyzsh="subl ~/.oh-my-zsh"
@@ -106,6 +106,8 @@ fi
 if [[ ! -d $WORKON_HOME ]]; then
     mkdir -p $WORKON_HOME
 fi
+
+alias workoff='deactivate'
 
 #########
 ## Hub ##
