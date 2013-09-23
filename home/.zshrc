@@ -33,6 +33,7 @@ plugins=(vim git hub ssh brew git-extras github last-working-dir node npm osx pi
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
  COMPLETION_WAITING_DOTS="true"
+
 # add custom completion scripts
 fpath=(~/.zsh/completion $fpath)
 
@@ -67,8 +68,9 @@ alias ohmyzsh="subl ~/.oh-my-zsh"
 alias nano="subl"
 
 # Bring in private aliases
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
+ALIASFILE=~/.aliases
+if [ -f $ALIASFILE ]; then
+    source $ALIASFILE
 else
   echo "No private aliases found"
 fi
