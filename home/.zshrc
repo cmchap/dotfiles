@@ -14,7 +14,7 @@ DEFAULT_USER=$USER
 # oh-my-zsh plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vim git hub ssh brew git-extras github last-working-dir node npm osx pip python screen sublime zsh-syntax-highlighting)
+plugins=(vim git jump hub ssh brew git-extras github last-working-dir node npm osx pip python screen sublime zsh-syntax-highlighting)
 
 ################
 ## Completion ##
@@ -64,16 +64,6 @@ alias ls='ls -aFhG'
 alias homesick="$HOME/.homesick/repos/homeshick/home/.homeshick"
 alias zshconfig="subl ~/.zshrc"
 alias ohmyzsh="subl ~/.oh-my-zsh"
-#alias subl="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
-alias nano="subl"
-
-# Bring in private aliases
-ALIASFILE=~/.aliases
-if [ -f $ALIASFILE ]; then
-    source $ALIASFILE
-else
-  echo "No private aliases found"
-fi
 
 ###########################
 ## Environment Variables ##
@@ -88,6 +78,8 @@ export NODE_PATH="/usr/local/lib/node"
 ##########
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin
 export PATH=/usr/local/share/python:$PATH
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
 
 ############
 ## Python ##
@@ -158,10 +150,26 @@ function _completemarks {
 compctl -K _completemarks jump
 compctl -K _completemarks unmark
 
-##############
-## Globbing ##
-##############
+
+###################
+## Miscellaneous ##
+###################
+
+# Globbing
 setopt extended_glob
+
+##################
+## Private Info ##
+##################
+
+# Bring in private info
+PRIVATEFILE=~/.private_zsh
+if [ -f $PRIVATEFILE ]; then
+    source $PRIVATEFILE
+else
+  echo "No private file found"
+fi
+
 
 ############
 ## Prompt ##
