@@ -122,12 +122,14 @@ stty start undef
 ##############################
 ## SSH Key to remote server ##
 ##############################
+# type 'ssh-copy user@server.domain' to push your id_rsa.pub ssh key to that remote server.
+# modified from here: https://github.com/mrichie/ssh-copy-id
 ssh-copy () {
   ID_FILE="${HOME}/.ssh/id_rsa.pub"
 
   if [ -z "$1" ] # if there are no arguments passed, throw this error. THIS DOESN'T WORK RIGHT NOW!
     then
-      echo "Which server? Try ' ssh-copy user@server.domain'"
+      echo "Which server? Try 'ssh-copy user@server.domain'"
   fi
 
   if [ "-i" = "$1" ]; then
