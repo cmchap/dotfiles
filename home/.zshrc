@@ -218,7 +218,7 @@ PRIVATEFILE=~/.private_zsh
 if [ -f $PRIVATEFILE ]; then
     source $PRIVATEFILE
 else
-  echo "No private file found"
+  echo "No ~/.private_zsh file found"
 fi
 
 
