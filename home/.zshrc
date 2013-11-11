@@ -79,6 +79,8 @@ export NODE_PATH="/usr/local/lib/node"
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin:$PATH
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+# NPM Path from here: http://madebyhoundstooth.com/blog/install-node-with-homebrew-on-os-x/
+export PATH="/usr/local/share/npm/bin:$PATH"
 
 ############
 ## Python ##
