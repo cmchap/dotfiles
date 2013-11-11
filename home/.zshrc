@@ -76,7 +76,7 @@ export NODE_PATH="/usr/local/lib/node"
 ##########
 ## Path ##
 ##########
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/share/python:$PATH
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -343,3 +343,4 @@ build_prompt() {
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
 RPROMPT='%t !%!'
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
