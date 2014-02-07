@@ -73,6 +73,11 @@ export EDITOR="subl -w"
 #Add Node path
 export NODE_PATH="/usr/local/lib/node"
 
+###########
+## Hubot ##
+###########
+export HUBOT_AUTH_ADMIN=cmchap,cchapman
+
 ##########
 ## Path ##
 ##########
